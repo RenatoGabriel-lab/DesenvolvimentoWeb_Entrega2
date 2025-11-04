@@ -1,0 +1,666 @@
+/* ========================================
+   SISTEMA DE ESPAÇAMENTO MODULAR (8px)
+   ======================================== */
+:root {
+  /* Escala de 8px */
+  --space-1: 8px;   /* 8px */
+  --space-2: 16px;  /* 16px */
+  --space-3: 24px;  /* 24px */
+  --space-4: 32px;  /* 32px */
+  --space-6: 48px;  /* 48px */
+  --space-8: 64px;  /* 64px */
+
+  /* Aplicações comuns */
+  --gap-sm: var(--space-1);
+  --gap: var(--space-2);
+  --gap-lg: var(--space-3);
+  --gap-xl: var(--space-4);
+
+  --section-padding: var(--space-3);
+  --card-padding: var(--space-2);
+  --header-padding: var(--space-6) var(--space-2);
+
+  /* Outras variáveis */
+  --font-primary: "Arial", "Helvetica Neue", sans-serif;
+  --radius: 12px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+
+  /* Cores para componentes */
+  --success: #16A34A;
+  --error: #DC2626;
+  --warning: #EA580C;
+  --info: #1E40AF;
+  --disabled: #9CA3AF;
+}
+
+/* Cores por página 
+.page-home         { --cor: #1E40AF; --cor-hover: #1e3a8a; }
+.page-sobre        { --cor: #7C3AED; --cor-hover: #6d28d9; }
+.page-projetos     { --cor: #DC2626; --cor-hover: #b91c1c; }
+.page-voluntariado { --cor: #EA580C; --cor-hover: #c2410c; }
+.page-doacoes      { --cor: #22C55E; --cor-hover: #16A34A; }
+.page-cadastro     { --cor: #0D9488; --cor-hover: #0f766e; }
+*/
+
+.page-home         { --cor: #3B82F6; --cor-hover: #2563EB; } /* Azul vivo, mas não azul-link */
+.page-sobre        { --cor: #8B5CF6; --cor-hover: #7C3AED; } /* Roxo vibrante */
+.page-projetos     { --cor: #EF4444; --cor-hover: #DC2626; } /* Vermelho coral */
+.page-voluntariado { --cor: #F97316; --cor-hover: #EA580C; } /* Laranja quente */
+.page-doacoes      { --cor: #22C55E; --cor-hover: #16A34A; } /* Verde brilhante */
+.page-cadastro     { --cor: #14B8A6; --cor-hover: #0D9488; } /* Verde-água */
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  background: #f4f7fb;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ========================================
+   HEADER & NAVEGAÇÃO
+   ======================================== */
+header {
+  background: var(--cor, #1E40AF);
+  color: white;
+  text-align: center;
+  padding: var(--header-padding);
+  box-shadow: var(--shadow-md);
+}
+
+header img {
+  max-width: 180px;
+  border-radius: var(--radius);
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+}
+
+header img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 var(--space-1) 20px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: var(--space-2) 0 0;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Navegação */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-2) 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: calc(var(--space-1) * 0.75) var(--space-2);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  outline: none;
+}
+
+nav ul li a:active {
+  transform: translateY(0);
+}
+
+/* ========================================
+   SEÇÕES PRINCIPAIS
+   ======================================== */
+main {
+  flex: 1;
+  padding: var(--space-4) var(--space-2);
+}
+
+section, form {
+  max-width: 900px;
+  margin: 0 auto var(--space-4);
+  padding: var(--section-padding);
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+section:hover, form:hover {
+  box-shadow: 0 var(--space-1) 25px rgba(0, 0, 0, 0.12);
+}
+
+section h2, form h2 {
+  color: var(--cor);
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  margin-bottom: var(--space-2);
+  position: relative;
+}
+
+section h2::after, form h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--cor);
+  margin: var(--gap-sm) auto 0;
+  border-radius: 2px;
+}
+
+p, li, label {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-2);
+}
+
+/* ========================================
+   SISTEMA DE CARDS RESPONSIVOS (PARA PROJETOS)
+   ======================================== */
+.projeto-card, .atividade-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background: #f8faff;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: var(--space-2);
+  transition: var(--transition);
+  border: 1px solid #e2e8f0;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .projeto-card, .atividade-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .projeto-card img, .atividade-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+}
+
+.projeto-card:hover, .atividade-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.projeto-card img, .atividade-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.projeto-card div, .atividade-card div {
+  padding: var(--card-padding);
+  flex: 1;
+}
+
+.projeto-card h3, .atividade-card h3 {
+  margin: 0 0 var(--gap-sm);
+  color: var(--cor);
+  font-size: 1.3rem;
+}
+
+/* ========================================
+   BOTÕES COM ESTADOS VISUAIS
+   ======================================== */
+.btn {
+  display: inline-block;
+  background: var(--cor);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: var(--cor-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 var(--space-1) 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: 2px solid var(--cor-hover);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+  background: color-mix(in srgb, var(--cor) 90%, black);
+}
+
+.btn:disabled {
+  background: var(--disabled);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Variantes */
+.btn-success { background: var(--success); }
+.btn-error { background: var(--error); }
+.btn-warning { background: var(--warning); }
+.btn-info { background: var(--info); }
+
+/* ========================================
+   FORMULÁRIOS ESTILIZADOS COM VALIDAÇÃO VISUAL
+   ======================================== */
+#cadastro {
+  max-width: 800px;
+}
+
+#cadastro fieldset {
+  border: 2px solid #e2e8f0;
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  margin-bottom: var(--space-2);
+  background: #fafcff;
+}
+
+#cadastro legend {
+  font-weight: 700;
+  color: var(--cor);
+  padding: 0 var(--gap-sm);
+  font-size: 1.1rem;
+}
+
+#cadastro label {
+  display: block;
+  margin: var(--space-2) 0 var(--gap-sm);
+  font-weight: 600;
+  color: #444;
+}
+
+#cadastro input,
+#cadastro select,
+#cadastro textarea {
+  width: 100%;
+  padding: var(--space-2);
+  border: 1px solid #ccc;
+  border-radius: var(--space-1);
+  font-size: 1rem;
+  transition: var(--transition);
+  background: white;
+}
+
+#cadastro input:focus,
+#cadastro select:focus,
+#cadastro textarea:focus {
+  outline: none;
+  border-color: var(--cor);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.15);
+}
+
+/* Validação Visual */
+#cadastro input:valid,
+#cadastro select:valid,
+#cadastro textarea:valid {
+  border-color: var(--success);
+}
+
+#cadastro input:invalid,
+#cadastro select:invalid,
+#cadastro textarea:invalid {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
+
+#cadastro .error-message {
+  color: var(--error);
+  font-size: 0.9rem;
+  margin-top: var(--gap-sm);
+  display: block;
+}
+
+#cadastro button {
+  background: var(--cor);
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  width: 100%;
+  margin-top: var(--space-2);
+  transition: var(--transition);
+}
+
+#cadastro button:hover {
+  background: var(--cor-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 var(--space-1) 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   COMPONENTES DE FEEDBACK (ALERTS, TOASTS, MODALS)
+   ======================================== */
+
+/* Alerts */
+.alert {
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-2);
+  font-size: 1rem;
+  position: relative;
+}
+
+.alert-success { background: rgba(22, 163, 74, 0.1); color: var(--success); border: 1px solid var(--success); }
+.alert-error { background: rgba(220, 38, 38, 0.1); color: var(--error); border: 1px solid var(--error); }
+.alert-warning { background: rgba(234, 88, 12, 0.1); color: var(--warning); border: 1px solid var(--warning); }
+.alert-info { background: rgba(30, 64, 175, 0.1); color: var(--info); border: 1px solid var(--info); }
+
+.alert::before {
+  content: '!';
+  font-weight: bold;
+  margin-right: var(--gap-sm);
+}
+
+/* Toasts */
+.toast {
+  position: fixed;
+  bottom: var(--space-2);
+  right: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  font-size: 0.95rem;
+  animation: slideIn 0.5s ease-out;
+  z-index: 1000;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.toast-success { background: var(--success); color: white; }
+.toast-error { background: var(--error); color: white; }
+.toast-warning { background: var(--warning); color: white; }
+.toast-info { background: var(--info); color: white; }
+
+/* Modals */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  max-width: 500px;
+  width: 90%;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+/* ========================================
+   SISTEMA DE BADGES E TAGS
+   ======================================== */
+.badge, .tag {
+  display: inline-block;
+  padding: var(--gap-sm) var(--space-1);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-right: var(--gap-sm);
+  margin-bottom: var(--gap-sm);
+}
+
+.badge {
+  background: rgba(30, 64, 175, 0.2);
+  color: var(--info);
+}
+
+.tag {
+  background: rgba(234, 88, 12, 0.2);
+  color: var(--warning);
+}
+
+/* Variantes */
+.badge-success, .tag-success { background: rgba(22, 163, 74, 0.2); color: var(--success); }
+.badge-error, .tag-error { background: rgba(220, 38, 38, 0.2); color: var(--error); }
+.badge-warning, .tag-warning { background: rgba(234, 88, 12, 0.2); color: var(--warning); }
+.badge-info, .tag-info { background: rgba(30, 64, 175, 0.2); color: var(--info); }
+
+/* ========================================
+   HOME
+   ======================================== */
+#home {
+  text-align: center;
+  padding: var(--space-6) var(--space-2);
+}
+
+/* ========================================
+   GALERIA DE FOTOS
+   ======================================== */
+.fotos-voluntariado {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.fotos-voluntariado img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.fotos-voluntariado img:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* ========================================
+   DOAÇÕES
+   ======================================== */
+#doacoes a {
+  color: var(--cor);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#doacoes a:hover {
+  color: var(--cor-hover);
+}
+
+/* ========================================
+   SOBRE
+   ======================================== */
+#sobre strong { 
+  color: var(--cor); 
+  font-weight: 700;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+footer {
+  background: var(--cor, #1E40AF);
+  color: white;
+  text-align: center;
+  padding: var(--space-2);
+  font-size: 0.9rem;
+  margin-top: auto;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* ========================================
+   RESPONSIVO (Mobile-First)
+   ======================================== */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: var(--space-2);
+    --card-padding: var(--space-2);
+    --header-padding: var(--space-4) var(--space-2);
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-sm);
+  }
+
+  section, form {
+    margin: var(--space-2) var(--space-1);
+    padding: var(--space-2);
+  }
+
+  #home {
+    padding: var(--space-4) var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: var(--space-4) var(--space-1);
+  }
+
+  header img {
+    max-width: 140px;
+  }
+
+  .fotos-voluntariado {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+}
+
+/* Modo Escuro */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121826;
+    color: #e2e8f0;
+  }
+
+  section, form, .projeto-card, .atividade-card {
+    background: #1e293b;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  .alert-success { background: rgba(22, 163, 74, 0.2); }
+  .alert-error { background: rgba(220, 38, 38, 0.2); }
+  .alert-warning { background: rgba(234, 88, 12, 0.2); }
+  .alert-info { background: rgba(30, 64, 175, 0.2); }
+}
+
+/* ========================================
+   ANIMAÇÕES DE ENTRADA SUAVES
+   ======================================== */
+
+/* Fade + leve subida */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+
+
+/* estilo para "voltar ao início */
+   
+.voltar {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* Estilo do botão */
+.btn-voltar {
+  display: inline-block;
+  background-color: var(--cor); /* #2e8b57;   verde principal */
+  color: #fff;                 /* texto branco */
+  padding: 10px 20px;
+  border-radius: 25px;         /* deixa o botão arredondado */
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;   /* suaviza animações */
+}
+
+/* Efeito ao passar o mouse */
+.btn-voltar:hover {
+  background-color: var(--cor-hover); /* #3cb371;   verde mais claro */
+  transform: scale(1.08);      /* leve zoom */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2); /* sombra suave */
+}
+
+   /* Efeito de atraso (para aplicar sequência) */
+.fade-delay-1 { animation-delay: 0.2s; }
+.fade-delay-2 { animation-delay: 0.4s; }
+.fade-delay-3 { animation-delay: 0.6s; }
+.fade-delay-4 { animation-delay: 0.8s; }
+.fade-delay-5 { animation-delay: 1s; }

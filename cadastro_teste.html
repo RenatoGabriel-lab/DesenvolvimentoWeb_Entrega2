@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Amigão | Cadastro</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-cadastro">
+
+  <header>
+    <h1>ONG Amigão</h1>
+  </header>
+
+  <main>
+    <section id="cadastro" class="fade-up fade-delay-1">
+      <form id="formCadastro">
+        <h2>Cadastro de Voluntário</h2>
+        <div class="form-grid">
+
+          <fieldset>
+            <legend>Informações Pessoais</legend>
+            <div class="form-row"><label for="cpf">CPF:</label><input type="text" id="cpd" name="cpf" required maxlength="14" placeholder="000.000.000-00"></div>
+            <div class="form-row"><label for="nome">Nome:</label><input type="text" id="nome" required></div>
+            <div class="form-row"><label for="data_nascimento">Dta de Nascimento:</label><input type="date" id="dt_nascimento" required></div>
+            <div class="form-row"><label for="email">E-mail:</label><input type="email" id="email" required placeholder="seu_email@seu_provedor"></div>
+            <div class="form-row"><label for="telefone">Telefone:</label><input type="tel" id="telefone" name="telefone" required maxlength="15" placeholder="(00) 00000-0000"></div>
+          </fieldset>
+
+          <fieldset> 
+            <legend>Endereço</legend>
+            <div class="form-row"><label for="endereco">Endereço:</label><input type="text" id="endereco" required></div>
+            <div class="form-row"><label for="bairro">Bairro:</label><input type="text" id="bairro" required></div>
+            <div class="form-row"><label for="cep">CEP:</label><input type="text" id="cep" name="cep" required maxlength="9" placeholder="00000-000"></div>
+            <div class="form-row"><label for="cidade">Cidade:</label><input type="text" id="cidade" required></div>
+            <div class="form-row"><label for="estado">Estado:</label><select id="estado" name="estado" required><option value="">Selecione</option>
+  	        <option>SP</option>
+	  	      <option>AC</option><option>AL</option><option>AP</option><option>AM</option>
+	          <option>BA</option><option>CE</option><option>DF</option><option>ES</option>
+	          <option>GO</option><option>MA</option><option>MT</option><option>MS</option>
+	          <option>MG</option><option>PA</option><option>PB</option><option>PR</option>
+	          <option>PE</option><option>PI</option><option>RJ</option><option>RN</option>
+	          <option>RS</option><option>RO</option><option>RR</option><option>SC</option>
+	          <option>SE</option><option>TO</option>
+	          </select>
+            </div>
+          </fieldset>
+
+        </div>
+        <button type="submit">Enviar</button>
+
+        <p class="voltar">
+          <a href="index.html" class="btn-voltar">Voltar à página inicial</a>
+        </p>
+
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Máscaras de input simples
+    const cpf = document.getElementById('cpf');
+    const telefone = document.getElementById('telefone');
+    const cep = document.getElementById('cep');
+    const form = document.getElementById('formCadastro');
+
+    cpf.addEventListener('input', () => {
+      let v = cpf.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      cpf.value = v.replace(/(\d{3})(\d{3})(\d{3})(\d{0,2})/, (_, a, b, c, d) => 
+        d ? `${a}.${b}.${c}-${d}` : `${a}.${b}.${c}`);
+    });
+
+    telefone.addEventListener('input', () => {
+      let v = telefone.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      telefone.value = v.replace(/^(\d{2})(\d{5})(\d{0,4})/, (_, a, b, c) => 
+        c ? `(${a}) ${b}-${c}` : `(${a}) ${b}`);
+    });
+
+    cep.addEventListener('input', () => {
+      let v = cep.value.replace(/\D/g, '');
+      if (v.length > 8) v = v.slice(0, 8);
+      cep.value = v.replace(/^(\d{5})(\d{0,3})/, (_, a, b) => 
+        b ? `${a}-${b}` : `${a}`);
+    });
+
+    // Envio do formulário com feedback visual
+      form.addEventListener('submit', e => {
+      e.preventDefault(); // impede o reload da página
+      alert('Cadastro enviado com sucesso! 🐶');
+ 
+    // Efeito visual de sucesso
+      form.style.transition = "opacity 0.3s ease";
+      form.style.opacity = "0.5";
+      setTimeout(() => {
+        form.reset();            // limpa os campos
+        form.style.opacity = "1"; // volta ao normal
+      }, 1000);
+    });
+  </script>
+
+
+  <footer>
+    <p>© 2025 ONG Amigão. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    document.getElementById('formCadastro').onsubmit = () => {
+      alert('Cadastro enviado com sucesso! 🐶');
+      return false;
+    };
+  </script>
+</body>
+</html>
