@@ -681,8 +681,17 @@ footer a {
 }
 
 .logo-img {
-  height: 60px;
-  border-radius: 50%;
+  height: 120px;
+  width: 120px;                    /* ← IMPORTANTE: largura = altura */
+  object-fit: cover;               /* ← Garante que a imagem preencha o círculo */
+  border-radius: 50%;              /* ← Moldura redonda */
+  border: 4px solid #16A34A;       /* ← Borda verde completa */
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.2); /* Opcional: sombra suave */
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.05);
 }
 
 header h1 {

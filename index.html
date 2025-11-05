@@ -14,12 +14,19 @@
   <style>
 
     /* === CORES CORRIGIDAS (laranja) === */
+
     :root {
+  --main: #10B981;        /* Verde Esmeralda */
+  --main-hover: #059669;  /* Hover mais escuro */
+  --main-light: #366951;  /* Fundo claro */
+}
+/* 
+:root {
       --orange: #e67e22;
       --orange-hover: #f39c12;
       --orange-light: #fdf2e9;
     }
-
+*/
     /* === MENU HAMBURGUER === */
     .hamburger {
       display: none;
@@ -27,13 +34,13 @@
       font-style: bold;
       background: none;
       border: none;
-      color: var(--orange);
+      color: var(--main);
       cursor: pointer;
       padding: 10px;
     }
 
     .hamburger:hover {
-      color: var(--orange-hover);
+      color: var(--main-hover);
     }
 
     .nav-menu {
@@ -49,10 +56,32 @@
       position: relative;
     }
 
-    /* === BOTÕES UNIFORMES === */
+/* === BOTÕES UNIFORMES === */
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--main); /* ou var(--orange) se ainda estiver usando */
+  font-weight: 700 !important; /* ← AQUI: TÍTULOS EM NEGRITO */
+  font-style: normal; /* remove italic se tiver */
+  transition: all 0.3s ease;
+  display: block;
+  padding: 10px 16px;
+  min-width: 120px;
+  text-align: center;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.nav-menu a:hover {
+  color: white;
+  background: var(--main-hover);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+  
+/*    
     .nav-menu a {
       text-decoration: none;
-      color: var(--orange);
+      color: var(--main);
       font-weight: 500;
       font-style: bold;
       transition: all 0.3s ease;
@@ -67,10 +96,10 @@
     .nav-menu a:hover {
       color: white;
       font-style: bold;
-      background: var(--orange);
+      background: var(--main);
       box-shadow: 0 2px 8px rgba(230, 126, 34, 0.3);
     }
-
+*/
     /* === DROPDOWN (Desktop) === */
     .dropdown {
       position: relative;
@@ -113,7 +142,7 @@
     }
 
     .dropdown-content a:hover {
-      background: var(--orange-light);
+      background: var(--main-light);
       color: var(--orange);
       font-weight: 500; 
     }
@@ -154,13 +183,13 @@
         text-align: left;
         padding: 14px 16px;
         border-radius: 8px;
-        background: var(--orange-light);
-        color: var(--orange);
+        background: var(--main-light);
+        color: var(--main);
         font-weight: 700;
       }
 
       .nav-menu a:hover {
-        background: var(--orange);
+        background: var(--main);
         color: white;
       }
 
@@ -188,7 +217,7 @@
       }
 
       .dropdown-content a:hover {
-        background: var(--orange);
+        background: var(--main);
         color: white;
       }
 
@@ -198,7 +227,7 @@
         font-size: 1.2rem;
         margin-left: 8px;
         float: right;
-        color: var(--orange);
+        color: var(--main);
       }
 
       .dropdown.active > a::after {
@@ -245,8 +274,13 @@
     }
   </style>
 </head>
+
 <body class="page-index">
   <header>
+    <h1 style="color: #f0f0f0;">ONG Amigão</h1>
+  </header>
+
+  <section id="menu">
     <div class="header-container">
       <button class="hamburger" aria-label="Abrir menu" onclick="toggleMenu()">
         <i class="fas fa-bars"></i>
@@ -282,13 +316,14 @@
         </ul>
       </nav>
     </div>
-  </header>
+  </section>
+<!-- </header> -->
 
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
   <section id="home">
-    <h1>ONG Amigão</h1>
-    <img src="img/amigao_1.jpg" alt="Amigão n°.1" class="logo-img">
+    <!-- <h1>ONG Amigão</h1> -->
+    <img src="img/amigao_1.jpg" alt="Amigão n°.1"> <!-- class="logo-img">   -->
     <h2>Transformando vidas com amor e cuidado</h2>
     <p>Na ONG Amigão, nossa missão é proteger, cuidar e encontrar lares amorosos para cães em situação de vulnerabilidade, maus tratos e abandono.</p>
     <p>Junte-se a nós e faça parte dessa causa! Seja voluntário, apoie nossos projetos ou faça doações.</p>
