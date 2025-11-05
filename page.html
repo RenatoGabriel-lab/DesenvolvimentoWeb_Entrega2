@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto HTML com Design System</title>
+    <style>
+        /* Design System: Variáveis CSS */
+        :root {
+            /* Paleta de Cores (mínimo 8) */
+            --primary: #007bff;
+            --primary-dark: #0056b3;
+            --secondary: #6c757d;
+            --secondary-dark: #5a6268;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+
+            /* Tipografia Hierárquica (mínimo 5 tamanhos) */
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.25rem;
+            --font-size-xl: 1.5rem;
+            --font-size-2xl: 2rem;
+
+            /* Sistema de Espaçamento Modular */
+            --space-1: 8px;
+            --space-2: 16px;
+            --space-3: 24px;
+            --space-4: 32px;
+            --space-5: 48px;
+            --space-6: 64px;
+
+            /* Font Family */
+            --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Layouts Responsivos com Flexbox e Grid */
+        /* Sistema de Grid Customizado (12 colunas) */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: var(--space-2);
+        }
+
+        .col-1 { grid-column: span 1; }
+        .col-2 { grid-column: span 2; }
+        .col-3 { grid-column: span 3; }
+        .col-4 { grid-column: span 4; }
+        .col-5 { grid-column: span 5; }
+        .col-6 { grid-column: span 6; }
+        .col-7 { grid-column: span 7; }
+        .col-8 { grid-column: span 8; }
+        .col-9 { grid-column: span 9; }
+        .col-10 { grid-column: span 10; }
+        .col-11 { grid-column: span 11; }
+        .col-12 { grid-column: span 12; }
+
+        /* Breakpoints Responsivos (5 bem definidos) */
+        @media (min-width: 576px) {
+            .sm-col-6 { grid-column: span 6; }
+            /* Adicione mais classes conforme necessário */
+        }
+
+        @media (min-width: 768px) {
+            .md-col-4 { grid-column: span 4; }
+        }
+
+        @media (min-width: 992px) {
+            .lg-col-3 { grid-column: span 3; }
+        }
+
+        @media (min-width: 1200px) {
+            .xl-col-2 { grid-column: span 2; }
+        }
+
+        /* Layout Principal com CSS Grid */
+        .main-layout {
+            display: grid;
+            grid-template-areas:
+                "header header"
+                "nav main"
+                "footer footer";
+            grid-template-columns: 1fr 4fr;
+            gap: var(--space-3);
+            padding: var(--space-4);
+        }
+
+        header { grid-area: header; }
+        nav { grid-area: nav; }
+        main { grid-area: main; }
+        footer { grid-area: footer; }
+
+        /* Flexbox para Componentes Internos */
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        /* Navegação Sofisticada e Interativa */
+        .main-menu {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu li {
+            position: relative;
+            margin-right: var(--space-2);
+        }
+
+        .main-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            padding: var(--space-1) var(--space-2);
+        }
+
+        .main-menu a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Submenu Dropdown */
+        .dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-menu li:hover .dropdown {
+            display: block;
+        }
+
+        /* Menu Hambúrguer para Mobile */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark);
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-menu {
+                display: none;
+                flex-direction: column;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .main-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Componentes de Interface */
+        /* Sistema de Cards Responsivos */
+        .card {
+            background-color: white;
+            border: 1px solid var(--secondary);
+            border-radius: 8px;
+            padding: var(--space-2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Botões com Estados Visuais */
+        .btn {
+            padding: var(--space-1) var(--space-2);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-primary:focus {
+            outline: 2px solid var(--info);
+        }
+
+        .btn-primary:active {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-disabled {
+            background-color: var(--secondary);
+            cursor: not-allowed;
+        }
+
+        /* Formulários Estilizados com Validação Visual */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        input {
+            padding: var(--space-1);
+            border: 1px solid var(--secondary);
+            border-radius: 4px;
+        }
+
+        input:invalid {
+            border-color: var(--danger);
+        }
+
+        input:valid {
+            border-color: var(--success);
+        }
+
+        /* Componentes de Feedback: Alerts, Toasts, Modals */
+        .alert {
+            padding: var(--space-2);
+            border-radius: 4px;
+            margin-bottom: var(--space-2);
+        }
+
+        .alert-success {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .alert-danger {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--info);
+            color: white;
+            padding: var(--space-2);
+            border-radius: 4px;
+            display: none;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: var(--space-3);
+            border-radius: 8px;
+        }
+
+        /* Sistema de Badges e Tags */
+        .badge {
+            padding: var(--space-1)/2 var(--space-1);
+            border-radius: 12px;
+            font-size: var(--font-size-sm);
+            margin-right: var(--space-1);
+        }
+
+        .badge-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .badge-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        /* Layouts Específicos para Diferentes Tipos de Conteúdo */
+        .projects-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-3);
+        }
+
+        .form-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Layout Principal -->
+    <div class="main-layout">
+        <header class="flex-container">
+            <h1 style="font-size: var(--font-size-2xl);">Meu Projeto</h1>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="main-menu" id="mainMenu">
+                <li><a href="#">Home</a></li>
+                <li>
+                    <a href="#">Serviços</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Serviço 1</a></li>
+                        <li><a href="#">Serviço 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </header>
+
+        <nav>
+            <!-- Navegação Lateral ou algo -->
+            <ul>
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Seção de Projetos com Cards -->
+            <section class="projects-section">
+                <div class="card col-12 md-col-4">
+                    <h2 style="font-size: var(--font-size-xl);">Projeto 1</h2>
+                    <p>Descrição do projeto.</p>
+                    <span class="badge badge-primary">Novo</span>
+                    <span class="badge badge-secondary">Tech</span>
+                    <button class="btn btn-primary">Ver Mais</button>
+                </div>
+                <div class="card col-12 md-col-4">
+                    <h2 style="font-size: var(--font-size-xl);">Projeto 2</h2>
+                    <p>Descrição do projeto.</p>
+                    <span class="badge badge-primary">Novo</span>
+                    <button class="btn btn-primary">Ver Mais</button>
+                </div>
+                <!-- Mais cards conforme necessário -->
+            </section>
+
+            <!-- Formulário de Contato -->
+            <section class="form-section">
+                <h2 style="font-size: var(--font-size-lg);">Contato</h2>
+                <form>
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" required minlength="3">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="button" class="btn btn-disabled" disabled>Desabilitado</button>
+                </form>
+            </section>
+
+            <!-- Alertas -->
+            <div class="alert alert-success">Sucesso!</div>
+            <div class="alert alert-danger">Erro!</div>
+
+            <!-- Toast -->
+            <div class="toast" id="toast">Mensagem de Toast</div>
+
+            <!-- Modal -->
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <h2>Modal</h2>
+                    <p>Conteúdo do modal.</p>
+                    <button onclick="closeModal()">Fechar</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Meu Projeto</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('mainMenu').classList.toggle('active');
+        }
+
+        function showToast() {
+            document.getElementById('toast').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('toast').style.display = 'none';
+            }, 3000);
+        }
+
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Exemplos de uso
+        // showToast();
+        // openModal();
+    </script>
+</body>
+</html>

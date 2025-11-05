@@ -42,9 +42,13 @@
 .page-voluntariado { --cor: #EA580C; --cor-hover: #c2410c; }
 .page-doacoes      { --cor: #22C55E; --cor-hover: #16A34A; }
 .page-cadastro     { --cor: #0D9488; --cor-hover: #0f766e; }
-*/
 
 .page-home         { --cor: #3B82F6; --cor-hover: #2563EB; } /* Azul vivo, mas não azul-link */
+*/
+
+
+
+.page-index         { --cor: #4B5563; --cor-hover: #374151; }  /* Cinza médio (principal) */ /* Cinza escuro (hover/ativo) */
 .page-sobre        { --cor: #8B5CF6; --cor-hover: #7C3AED; } /* Roxo vibrante */
 .page-projetos     { --cor: #EF4444; --cor-hover: #DC2626; } /* Vermelho coral */
 .page-voluntariado { --cor: #F97316; --cor-hover: #EA580C; } /* Laranja quente */
@@ -179,7 +183,7 @@ p, li, label {
 }
 
 /* ========================================
-   SISTEMA DE CARDS RESPONSIVOS (PARA PROJETOS)
+   SISTEMA DE CARDS RESPONSIVOS (PARA PROJETOS/DOACAOES)
    ======================================== */
 .projeto-card, .atividade-card {
   display: flex;
@@ -635,17 +639,19 @@ footer a {
 /* estilo para "voltar ao início */
    
 .voltar {
-  text-align: right;
-  margin-top: 20px;
+  text-align: center;          /* ← CENTRALIZADO (melhor UX) */
+  margin: 2rem 0;
+  width: 100%;
 }
 
 /* Estilo do botão */
 .btn-voltar {
   display: inline-block;
-  background-color: var(--cor); /* #2e8b57;   verde principal */
-  color: #fff;                 /* texto branco */
+  background-color: var(--cor); /* cor da pagina */
+  color: white !important;  /* #fff;   */                 /* texto branco */
+  text-decoration: none !important;
   padding: 10px 20px;
-  border-radius: 25px;         /* deixa o botão arredondado */
+  border-radius: 5px;         /* deixa o botão arredondado */
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;   /* suaviza animações */
@@ -664,3 +670,28 @@ footer a {
 .fade-delay-3 { animation-delay: 0.6s; }
 .fade-delay-4 { animation-delay: 0.8s; }
 .fade-delay-5 { animation-delay: 1s; }
+
+/* Adicione isso ao final do seu style.css */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.logo-img {
+  height: 60px;
+  border-radius: 50%;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+
+
+/* ========================================
+   FIM DO CSS
+   ======================================== */    
